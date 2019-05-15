@@ -1,0 +1,98 @@
+\documentclass[11pt]{article}
+
+\usepackage{listings,color,amsmath}
+
+\definecolor{comments}{RGB}{81,81,81}
+\definecolor{keywords}{RGB}{255,0,90}
+
+% lstlisting
+\lstset{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{keywords},
+    showspaces=false,
+    showstringspaces=false,
+    commentstyle=\color{blue}\emph
+}
+
+\usepackage[
+    type={CC},
+    modifier={by-nc-nd},
+    version={4.0},
+]{doclicense} 
+
+
+\topmargin -.5in
+\textheight 9in
+\oddsidemargin -.25in
+\evensidemargin -.25in
+\textwidth 7in
+
+\input{../ParallelComputationMath/template/variables.tex}
+
+\usepackage{fontspec}
+\setmainfont{Raleway}
+
+\begin{document}
+
+% ========== Edit your name here
+%\author{Your Name}
+\title{\coursename~Quiz 1: Due by Tuesday, September 3}
+\maketitle
+
+\medskip
+
+% ========== Begin answering questions here
+
+\section*{Exercises}
+
+\begin{enumerate}
+\item Programming on paper (2 credits): \\
+Write the shortest valid C++ program on paper.
+
+\item Interpreting programs (2 credits): \\
+What does the program in the following listing do if, when it asks you for input, you type two names (for example, Mike Tiger)? Predict the behavior before running the program, then try it.
+\lstinputlisting{code/exercise1-2.cpp}
+
+
+\end{enumerate}
+
+\section*{Programming exercises}
+
+\begin{enumerate}
+
+\item
+Formatting strings (2 credits): \\
+Write a function that takes a list of strings an prints them, one per line, in a rectangular frame. For example the list ["Hello", "World", "in", "a", "frame"] gets printed as:
+\begin{lstlisting}
+********* 
+* Hello * 
+* World * 
+* in    * 
+* a     *
+* frame *
+*********
+\end{lstlisting}
+
+
+
+\item Gaming: (2 credits)\\
+Write a guessing game where the user has to guess a secret number. After every guess the program tells the user whether their number was too large or too small. At the end the number of tries needed should be printed. It counts only as one try if they input the same number multiple times consecutively.
+
+\item Taylor Series (2 credits): \\
+Write a program that computes the Taylor series for the sin function
+$$
+sin(x) = \sum\limits_{n=0}^n (-1)^{n-1} \frac{x^{2n}}{(2n)!} 
+$$
+for a given $n$. Next, use the \lstinline|std::sin| function of the \lstinline|cmath| leader of the C++ standard library to obtain the need $n$ such that your implementation and the C++ standard implementation has the same first 5 digits for a given $x$.
+
+
+% ========== Continue adding items as needed
+
+\end{enumerate}
+
+\doclicenseThis 
+
+\end{document}
+\grid
+\grid

@@ -7,4 +7,3 @@ jobs:
       - checkout
       - run: find -name "*.cpp" -exec g++ "{}" -o "{}".exec ";"
       - run: find -name "*.cpp" -exec cppcheck --enable=warning,performance "{}" ";"
-      - run: cd abstract && latexmk -pdf abstract.tex && cp abstract.pdf ..

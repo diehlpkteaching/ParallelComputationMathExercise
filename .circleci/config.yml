@@ -1,13 +1,10 @@
 version: 2
 jobs:
-   build:
-     docker:
-      - image diehlpk/teaching
+  build:
+    docker:
+      - image: diehlpk/teaching
     steps:
-     - checkout
-     - run:
-     name: Compile
-     command: find -name "*.cpp" -exec g++ "{}" -o "{}".exec ";"
-    - run:
-     name: Check
-     command: find -name "*.cpp" -exec cppcheck --enable=warning,performance "{}" ";"
+      - checkout
+      - run: find -name "*.cpp" -exec g++ "{}" -o "{}".exec ";"
+      - run: find -name "*.cpp" -exec cppcheck --enable=warning,performance "{}" ";"
+      - run: cd abstract && latexmk -pdf abstract.tex && cp abstract.pdf ..

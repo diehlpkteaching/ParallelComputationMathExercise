@@ -7,7 +7,7 @@ jobs:
 		- checkout
 		- run:
 			name: Compile
-            command: find -name "*.cpp" -exec g++ "{}" -o "{}".exec ";"
+            		command: find -name "*.cpp" -exec g++ "{}" -o "{}".exec ";"
 		- run:
 			name: Check
-            command: find -name "*.cpp" -exec cppcheck --enable=warning,performance "{}" ";"
+            		command: find -name "*.cpp" -exec cppcheck --enable=warning,performance "{}" ";"

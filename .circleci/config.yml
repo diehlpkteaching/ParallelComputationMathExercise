@@ -7,3 +7,4 @@ jobs:
       - checkout
       - run: find -name "*.cpp" -exec g++ "{}" -o "{}".exec ";"
       - run: find -name "*.cpp" -exec cppcheck --enable=warning,performance "{}" ";"
+      - run: find -maxdepth 1 -name "exercise*.tex" -exec latexmk -pdflatex=xelatex -pdf "{}" ";"

@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+
+\usepackage{listings,color,amsmath,xfrac,amssymb}
+\usepackage[hidelinks]{hyperref}
+\definecolor{comments}{RGB}{81,81,81}
+\definecolor{keywords}{RGB}{255,0,90}
+
+% lstlisting
+\lstset{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{keywords},
+    showspaces=false,
+    showstringspaces=false,
+    commentstyle=\color{blue}\emph
+}
+
+\usepackage[
+    type={CC},
+    modifier={by-nc-nd},
+    version={4.0},
+]{doclicense} 
+
+
+\topmargin -.5in
+\textheight 9in
+\oddsidemargin -.25in
+\evensidemargin -.25in
+\textwidth 7in
+
+\input{variables.tex}
+
+\usepackage{fontspec}
+\setmainfont{Raleway}
+
+\begin{document}
+
+% ========== Edit your name here
+%\author{Your Name}
+\title{\coursename~Quiz 2: Due by Tuesday, September 10}
+\date{}
+\maketitle
+
+\medskip
+
+% ========== Begin answering questions here
+
+\section*{Exercises}
+
+\begin{enumerate}
+\item Programming on paper (2 credits): \\
+Write a program that computes the median of the elements in a vector.
+
+\item Interpreting programs (2 credits): \\
+What does this program do?
+\lstinputlisting{code/exercise2-1.cpp}
+
+
+\end{enumerate}
+
+\section*{Programming exercises}
+
+\begin{enumerate}
+
+\item Monte Carlo method: (4 credits)\\
+In Lecture 2, we discussed the Monte Carlo Method to estimate the value of $\pi$ by
+\begin{enumerate}
+\item Read $n$ from the terminal
+\item Generate random coordinates $(x,y)\in \mathbb{R}^2$
+\item Check if $x^2+y^2 \leq 1$
+\begin{itemize}
+\item Update $N_c$ if $\leq 1$
+\end{itemize}
+\item Increment $n$ the interval  
+\item If $n$ < $n_{\text{total}}$ go to 1
+\item Calculate $\pi \approx 4 \sfrac{N_c}{n}$
+\item Print result
+\end{enumerate}
+
+\item Measuring time: (2 credits)\\
+To measure the computation time, one can use the timers \lstinline|std::chrono::high_resolution_clock| of the \lstinline|#include <chrono>| header\footnote{\url{https://en.cppreference.com/w/cpp/chrono/high_resolution_clock}}.
+\begin{lstlisting}
+// Get starting timepoint 
+auto start = std::chrono::high_resolution_clock::now(); 
+// Do work
+// Stop timer
+auto stop = high_resolution_clock::now();
+// Get the duration
+auto duration = duration_cast<microseconds>(stop - start); 
+// Print the execution time  
+cout << "Time taken by function: "
+     << duration.count() << " microseconds" << endl; 
+\end{lstlisting} 
+Write a program that fills a vector and a list with $n$ elements and measure the execution time of both and print them to the terminal. 
+
+% ========== Continue adding items as needed
+
+\end{enumerate}
+
+\doclicenseThis 
+
+\end{document}
+\grid
+\grid

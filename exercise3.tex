@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+
+\usepackage{listings,color,amsmath,xfrac,amssymb}
+\usepackage[hidelinks]{hyperref}
+\definecolor{comments}{RGB}{81,81,81}
+\definecolor{keywords}{RGB}{255,0,90}
+
+% lstlisting
+\lstset{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{keywords},
+    showspaces=false,
+    showstringspaces=false,
+    commentstyle=\color{blue}\emph
+}
+
+\usepackage[
+    type={CC},
+    modifier={by-nc-nd},
+    version={4.0},
+]{doclicense} 
+
+
+\topmargin -.5in
+\textheight 9in
+\oddsidemargin -.25in
+\evensidemargin -.25in
+\textwidth 7in
+
+\input{variables.tex}
+
+\usepackage{fontspec}
+\setmainfont{Raleway}
+
+\begin{document}
+
+% ========== Edit your name here
+%\author{Your Name}
+\title{\coursename~Quiz 3: Due by Tuesday, September 10}
+\date{}
+\maketitle
+
+\medskip
+
+% ========== Begin answering questions here
+
+\section*{Exercises}
+
+\begin{enumerate}
+\item Programming on paper (2 credits): \\
+Write a struct for a complex number and overload the +,-, and * operator.
+
+\item Interpreting programs (2 credits): \\
+What does this program do? Please write down the value of $n$ at each occurrence of the \lstinline|std::cout| statement.
+\lstinputlisting{code/exercise3-2.cpp}
+
+
+\end{enumerate}
+
+\section*{Programming exercise}
+
+\begin{enumerate}
+
+\item N-body problem: (6 credits)\\
+In this exercise, we will implement the N-Body simulating using a direct sum to compute the forces and the Euler Method to update the positions.
+\begin{itemize}
+\item Datastrucutre:
+\begin{enumerate}
+\item Write a generic struct for a vector
+\item Add a function to compute the vector's norm
+\item Add a constructor which initializes the vector to zero
+\item Overload the operators +,-, and == for a second vector and the operator * for multplication with a scalar
+\end{enumerate}
+\item Class for the $N$-body simulation
+\begin{enumerate}
+\item Write a function to compute the force $\mathbf{F}_i=\sum\limits_{i=0,i\neq j}^n \mathbf{F}_{ij}= \sum\limits_{i=0,i\neq j}^n g_c m_j \frac{\mathbf{r}_j-\mathbf{r}_i}{\vert \mathbf{r}_j - \mathbf{r}_i\vert^3}$ for each body using a direct sum
+\item Write a function to compute the velocity $\mathbf{v}_i(t_k)=\mathbf{v}_i(t_{k-1})+\Delta t \frac{\mathbf{F}_i}{m_i}$ for each body
+\item Write a function to update the new positions $\mathbf{r}_i(t_{k+1})=\mathbf{r}_i(t_k)+\mathbf{v}_i(t_k)\Delta t$ of a each body
+\end{enumerate}
+\end{itemize}
+
+
+
+Not that you will get an invitation via Github classroom and you should use this repository to submit your solution. In addition, you can find the templates here\footnote{\url{https://github.com/diehlpkteaching/N-Body}}.
+
+
+% ========== Continue adding items as needed
+
+\end{enumerate}
+
+\doclicenseThis 
+
+\end{document}
+\grid
+\grid

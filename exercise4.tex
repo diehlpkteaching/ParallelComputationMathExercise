@@ -1,0 +1,98 @@
+\documentclass[11pt]{article}
+
+\usepackage{listings,color,amsmath,xfrac,amssymb}
+\usepackage[hidelinks]{hyperref}
+\definecolor{comments}{RGB}{81,81,81}
+\definecolor{keywords}{RGB}{255,0,90}
+
+% lstlisting
+\lstset{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{keywords},
+    showspaces=false,
+    showstringspaces=false,
+    commentstyle=\color{blue}\emph
+}
+
+\usepackage[
+    type={CC},
+    modifier={by-nc-nd},
+    version={4.0},
+]{doclicense} 
+
+
+\topmargin -.5in
+\textheight 9in
+\oddsidemargin -.25in
+\evensidemargin -.25in
+\textwidth 7in
+
+\input{variables.tex}
+
+\ifxetex
+\usepackage{fontspec}
+\setmainfont{Raleway}
+\fi
+
+\begin{document}
+
+% ========== Edit your name here
+%\author{Your Name}
+\title{\coursename~Quiz 4: Due by Tuesday, September 24}
+\date{}
+\maketitle
+
+\medskip
+
+% ========== Begin answering questions here
+
+\section*{Exercises}
+
+\begin{enumerate}
+\item Programming on paper (2 credits): \\
+Write a program that outputs the Fibonacci sequence up to a number $N$. The Fibonacci sequence is given as
+\begin{align*}
+F(0) &= 0 \text{ and } F(1) = 1  \\
+F(n) &= F(n-1) + F(n-2) \; \forall n > 1\text{.}
+\end{align*} 
+
+\item Definitions (2 credits): \\
+Explain the following terms in your own words:
+\begin{itemize}
+\item Race condition and data race (1 credit)
+\item Deadlock (1 credit)
+\end{itemize}
+
+
+\end{enumerate}
+
+\section*{Programming exercise}
+
+\begin{enumerate}
+
+\item CMake: (2 credits)\\
+Use any of your previous exercises and write a CMake file to compile this exercise.
+\item Numerical integration (4 credits)\\
+The trapezoidal rule can be used to approximate the definite integral 
+\begin{align*}
+\int\limits_a^b f(x) dx \approx \frac{h}{2} \sum\limits_{k=1}^N (f(x_{k-1}) + f(x_k))
+\end{align*}
+assuming a uniform grid in the interval $[a,b]$ with the grid size $h=\frac{b-a}{N}$.
+\begin{enumerate}
+\item Write a C++ program which approximates the integral for $f(x)=x^2$ on $[0,2]$ for any given $N$. (2 credits)
+\item Use \lstinline|std::future| and \lstinline|std::async| compute the solution asynchronously. (2 credit)
+\end{enumerate}
+Validate both of your implementations against the solution 
+\begin{align*}
+\int\limits_0^2 x^2 = \left\vert \frac{x^3}{3}\right\vert\limits_0^2 = \frac{2^3}{3} - \frac{0^2}{3} = \frac{8}{3}\text{.}
+\end{align*}
+% ========== Continue adding items as needed
+
+\end{enumerate}
+
+\doclicenseThis 
+
+\end{document}
+\grid
+\grid

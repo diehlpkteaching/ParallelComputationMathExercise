@@ -67,15 +67,15 @@ What does this program do?
 \item Monte Carlo method: (4 credits)\\
 In Lecture 2, we discussed the Monte Carlo Method to estimate the value of $\pi$ by
 \begin{enumerate}
-\item Read $n$ from the terminal
+\item Read $n_{\text{total}}$ from the terminal
 \item Generate random coordinates $(x,y)\in \mathbb{R}^2$
 \item Check if $x^2+y^2 \leq 1$
 \begin{itemize}
 \item Update $N_c$ if $\leq 1$
 \end{itemize}
-\item Increment $n$ the interval  
-\item If $n$ < $n_{\text{total}}$ go to 1
-\item Calculate $\pi \approx 4 \sfrac{N_c}{n}$
+\item Increment $n$ 
+\item If $n$ < $n_{\text{total}}$ go to (b)
+\item Calculate $\pi \approx 4 \sfrac{N_c}{n_\text{total}}$
 \item Print result
 \end{enumerate}
 

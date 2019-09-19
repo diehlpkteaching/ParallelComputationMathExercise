@@ -1,0 +1,116 @@
+    \documentclass[11pt]{article}
+
+\usepackage{listings,color,amsmath,xfrac,amssymb}
+\usepackage[hidelinks]{hyperref}
+\definecolor{comments}{RGB}{81,81,81}
+\definecolor{keywords}{RGB}{255,0,90}
+
+% lstlisting
+\lstset{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{keywords},
+    showspaces=false,
+    showstringspaces=false,
+    commentstyle=\color{blue}\emph
+}
+
+\usepackage[
+    type={CC},
+    modifier={by-nc-nd},
+    version={4.0},
+]{doclicense} 
+
+
+\topmargin -.5in
+\textheight 9in
+\oddsidemargin -.25in
+\evensidemargin -.25in
+\textwidth 7in
+
+\input{variables.tex}
+
+\ifxetex
+\usepackage{fontspec}
+\setmainfont{Raleway}
+\fi
+
+\begin{document}
+
+% ========== Edit your name here
+%\author{Your Name}
+\title{\coursename~Quiz 5: Due by Tuesday, October 1}
+\date{}
+\maketitle
+
+\medskip
+
+% ========== Begin answering questions here
+
+\section*{Exercises}
+
+\begin{enumerate}
+\item Programming on paper (2 credits): \\
+Write a program that computes
+\begin{align*}
+A = B + C
+\end{align*}
+where $A,B,C$ are \lstinline|std::vector| in parallel.
+
+\item Definitions (2 credits): \\
+Explain the following terms in your own words:
+\begin{itemize}
+\item Asynchronous vs synchronous programming
+\item Explain what a \lstinline|std::future| is and how to utilized it for parallism in your application.
+\end{itemize}
+
+
+\end{enumerate}
+
+\section*{Programming exercise}
+
+\begin{enumerate}
+
+\item Communication matrix: (2 credits)\\
+Use the following matrix as the network of people
+\begin{center}
+$
+M = \left[\begin{matrix}
+1 & 1 & 1 & 1 & 1 \\
+1 & 0 & 0 & 1 & 0 \\
+0 & 1 & 1 & 0 & 0 \\
+1 & 1 & 1 & 1 & 1 \\
+0 & 0 & 1 & 1 & 0
+\end{matrix}\right]
+$
+\end{center}
+and compute $M^n$, where $m^2_{3,2}=a_{3,1}a_{1,2}+a_{3,2}a_{2,2}+a_{3,4}a_{4,2}$. Ask the user to provide you with a value of $n$ and print the resulting matrix to the terminal.
+
+\item Conjugate gradient method (4 credits)\\
+To solve a equation system $\mathbf{A}\mathbf{x}=\mathbf{b}$, we can use the conjugate gradient methods (CG) by using following algorithm
+\begin{enumerate}
+\item $\mathbf{r_0} = \mathbf{b} - \mathbf{A} \mathbf{x}_0$
+\item If $\mathbf{r}_0< \epsilon$ return  $\mathbf{x}_0$
+\item $\mathbf{p}_0=\mathbf{r}_0$
+\item $k=0$
+\item $\alpha_k = \frac{\mathbf{r}_k^T\mathbf{r}_k}{\mathbf{p}_0^T\mathbf{A}\mathbf{p}_k}$
+\item $ \mathbf{x}_{k+1} = \mathbf{x}_k + \alpha_k \mathbf{p}_k$
+\item $ \mathbf{r}_{k+1} = \mathbf{r}_k + \alpha_k \mathbf{p}_k$
+\item If $\mathbf{r}_{k+1}< \epsilon$ exit loop
+\item $\beta_k = \frac{\mathbf{r}_{k+1}^T\mathbf{r}_{k+1}}{\mathbf{r}_k^T\mathbf{r}_k}$
+\item $\mathbf{p}_{k+1}=\mathbf{r}_{k+1} + \beta_k \mathbf{p}_k$
+\item $k=k+1$
+\item go to (e)
+return $\mathbf{x}_{k+1}$
+\end{enumerate}
+Implement the conjugate gradient algorithm using the Blaze library.
+
+Note that $\mathbf{x}_0$ can be chosen, if we know some assumption of the solution or set to zero. The symbol $mathbf{v}^T$ denotes the transpose of the vector $\mathbf{v}$.
+% ========== Continue adding items as needed
+
+\end{enumerate}
+\doclicenseThis 
+
+\end{document}
+\grid
+\grid

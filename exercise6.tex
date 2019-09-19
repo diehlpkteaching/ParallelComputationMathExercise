@@ -39,7 +39,7 @@
 
 % ========== Edit your name here
 %\author{Your Name}
-\title{\coursename~Quiz 5: Due by Tuesday, October 1}
+\title{\coursename~Quiz 6: Due by Tuesday, October 8}
 \date{}
 \maketitle
 
@@ -51,18 +51,43 @@
 
 \begin{enumerate}
 \item Programming on paper (2 credits): \\
-Write a program that computes
-\begin{align*}
-A = B + C
-\end{align*}
-where $A,B,C$ are \lstinline|std::vector| in parallel.
+Write a program that squares all elements in a \lstinline|std::vector<double>| and compute the sum of all elements using \lstinline|std::for_each| and \lstinline|std::execution::par|.
+
 
 \item Definitions (2 credits): \\
-Explain the following terms in your own words:
-\begin{itemize}
-\item Asynchronous vs synchronous programming
-\item Explain what a \lstinline|std::future| is and how to utilized it for parallism in your application.
-\end{itemize}
+What does this program do?
+\begin{lstlisting}
+#include <iostream>
+#include <vector>
+#include <numeric>
+#include <future>
+
+using namespace std;
+
+int func1(vector<int> values){
+    
+    
+    return accumulate(values.begin(),values.end(),0);
+    
+    
+}
+
+int main()
+{
+    std::vector<int> values = {1,2,3,4,5,6,7,8,9,10};
+    
+    auto f1 = std::async(func1,values);
+    
+    auto f2 = std::async([](const vector<int> values )
+          {return std::inner_product(values.begin(), values.end(), values.begin(), 0);}
+          ,values);
+    
+    
+    cout << f1.get() + f2.get() << std::endl;
+
+    return 0;
+}
+\end{lstlisting}
 
 
 \end{enumerate}
@@ -103,9 +128,9 @@ To solve a equation system $\mathbf{A}\mathbf{x}=\mathbf{b}$, we can use the con
 \item go to (e)
 return $\mathbf{x}_{k+1}$
 \end{enumerate}
-Implement the conjugate gradient algorithm using the Blaze library.
+Implement the conjugate gradient algorithm using the Blaze library\footnote{\url{https://bitbucket.org/blaze-lib/blaze/wiki/Home}}. Note that the Blaze library is installed on the course's server and I recommend to use the server or Jupyter notebooks for this exercise.
 
-Note that $\mathbf{x}_0$ can be chosen, if we know some assumption of the solution or set to zero. The symbol $mathbf{v}^T$ denotes the transpose of the vector $\mathbf{v}$.
+Note that $\mathbf{x}_0$ can be chosen, if we know some assumption of the solution or set to zero. The symbol $\mathbf{v}^T$ denotes the transpose of the vector $\mathbf{v}$.
 % ========== Continue adding items as needed
 
 \end{enumerate}

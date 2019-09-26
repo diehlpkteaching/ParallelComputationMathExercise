@@ -100,7 +100,7 @@ int main()
 Use the following matrix as the network of people
 \begin{center}
 $
-M = \left[\begin{matrix}
+\mathbf{M} = \left[\begin{matrix}
 1 & 1 & 1 & 1 & 1 \\
 1 & 0 & 0 & 1 & 0 \\
 0 & 1 & 1 & 0 & 0 \\
@@ -109,7 +109,7 @@ M = \left[\begin{matrix}
 \end{matrix}\right]
 $
 \end{center}
-and compute $M^n$, where $m^2_{3,2}=a_{3,1}a_{1,2}+a_{3,2}a_{2,2}+a_{3,4}a_{4,2}$. Ask the user to provide you with a value of $n$ and print the resulting matrix to the terminal.
+and compute $\mathbf{M}^4$, where $\mathbf{M}^4= \mathbf{M}*\mathbf{M}*\mathbf{M}*\mathbf{M}$. Ask the user to provide you with a value of $n$ and print the resulting matrix to the terminal.
 
 \item Conjugate gradient method (4 credits)\\
 To solve a equation system $\mathbf{A}\mathbf{x}=\mathbf{b}$, we can use the conjugate gradient methods (CG) by using following algorithm

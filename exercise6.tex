@@ -130,7 +130,17 @@ return $\mathbf{x}_{k+1}$
 \end{enumerate}
 Implement the conjugate gradient algorithm using the Blaze library\footnote{\url{https://bitbucket.org/blaze-lib/blaze/wiki/Home}}. Note that the Blaze library is installed on the course's server and I recommend to use the server or Jupyter notebooks for this exercise.
 
-Note that $\mathbf{x}_0$ can be chosen, if we know some assumption of the solution or set to zero. The symbol $\mathbf{v}^T$ denotes the transpose of the vector $\mathbf{v}$.
+Note that $\mathbf{x}_0$ can be chosen, if we know some assumption of the solution or set to zero. The symbol $\mathbf{v}^T$ denotes the transpose of the vector $\mathbf{v}$. Please use this code testing your implementation
+\begin{lstlisting}
+ for(int i=0; i<N; ++i) {
+        A(i,i) = 2.0;
+        b[i] = 1.0*(1+i);
+        x1[i] += x1[i-1];
+    }
+\end{lstlisting}
+
+
+
 % ========== Continue adding items as needed
 
 \end{enumerate}

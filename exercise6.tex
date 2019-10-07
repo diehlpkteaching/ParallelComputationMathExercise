@@ -118,9 +118,9 @@ To solve a equation system $\mathbf{A}\mathbf{x}=\mathbf{b}$, we can use the con
 \item If $\mathbf{r}_0< \epsilon$ return  $\mathbf{x}_0$
 \item $\mathbf{p}_0=\mathbf{r}_0$
 \item $k=0$
-\item $\alpha_k = \frac{\mathbf{r}_k^T\mathbf{r}_k}{\mathbf{p}_0^T\mathbf{A}\mathbf{p}_k}$
+\item $\alpha_k = \frac{\mathbf{r}_k^T\mathbf{r}_k}{\mathbf{p}_k^T\mathbf{A}\mathbf{p}_k}$
 \item $ \mathbf{x}_{k+1} = \mathbf{x}_k + \alpha_k \mathbf{p}_k$
-\item $ \mathbf{r}_{k+1} = \mathbf{r}_k + \alpha_k \mathbf{p}_k$
+\item $ \mathbf{r}_{k+1} = \mathbf{r}_k - \alpha_k \mathbf{p}_k$
 \item If $\mathbf{r}_{k+1}< \epsilon$ exit loop
 \item $\beta_k = \frac{\mathbf{r}_{k+1}^T\mathbf{r}_{k+1}}{\mathbf{r}_k^T\mathbf{r}_k}$
 \item $\mathbf{p}_{k+1}=\mathbf{r}_{k+1} + \beta_k \mathbf{p}_k$

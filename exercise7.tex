@@ -1,0 +1,116 @@
+\documentclass[11pt]{article}
+
+\usepackage{listings,color,amsmath,xfrac,amssymb}
+\usepackage[hidelinks]{hyperref}
+\definecolor{comments}{RGB}{81,81,81}
+\definecolor{keywords}{RGB}{255,0,90}
+
+% lstlisting
+\lstset{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{keywords},
+    showspaces=false,
+    showstringspaces=false,
+    commentstyle=\color{blue}\emph
+}
+
+\usepackage[
+    type={CC},
+    modifier={by-nc-nd},
+    version={4.0},
+]{doclicense} 
+
+
+\topmargin -.5in
+\textheight 9in
+\oddsidemargin -.25in
+\evensidemargin -.25in
+\textwidth 7in
+
+\input{variables.tex}
+
+\ifxetex
+\usepackage{fontspec}
+\setmainfont{Raleway}
+\fi
+
+\begin{document}
+
+% ========== Edit your name here
+%\author{Your Name}
+\title{\coursename~Quiz 7: Due by Tuesday, October 8}
+\date{}
+\maketitle
+
+\medskip
+
+% ========== Begin answering questions here
+
+\section*{Exercises}
+
+\begin{enumerate}
+\item Programming on paper (2 credits): \\
+Write a program that squares all elements in a \lstinline|std::vector<double>| and compute the sum of all elements using \lstinline|hpx::parallel::for_loop|. 
+
+
+\item Definitions: \\
+
+\begin{enumerate}
+\item Explain Amdahl's Law $S=\frac{1}{(1-P)+\frac{P}{N}}$, where $S$ is the speedup, $P$ is the proportion of parallel code, and $N$ the number of processors. (1 credit)
+\item In the guest lecturer, the four horsemen of the apocalypse or the term SLOW was introduced. Write down each term one of the letters defines and explain the term. (1 credit)
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+\section*{Programming exercise}
+
+\begin{enumerate}
+
+\item $N$-body simulation: (1 credit)\\
+The C++ standard library does not provide a nice way for range-based parallel for loops. HPX provides
+\begin{lstlisting}
+hpx::parallel::for_loop(
+	hpx::parallel::execution::par, 
+	0, 
+	values.size(),
+	[](boost::uint64_t i)
+		{
+		std::cout<< values[i] << std::endl;
+		}
+	);
+});
+\end{lstlisting} 
+which makes it more convenient to access several \lstinline|std::vector| using a index. Rewrite the previous $N$-Body simulation using \lstinline|hpx::parallel::for_loop| and the HPX's parallel algorithms.
+
+\item Numerical integration (5 credits)\\
+The trapezoidal rule can be used to approximate the definite integral 
+\begin{align*}
+\int\limits_a^b f(x) dx \approx \frac{h}{2} \sum\limits_{k=1}^N (f(x_{k-1}) + f(x_k))
+\end{align*}
+assuming a uniform grid in the interval $[a,b]$ with the grid size $h=\frac{b-a}{N}$.
+\begin{enumerate}
+\item Use \lstinline|hpx::future| and \lstinline|hpx::async| compute the solution asynchronously. (1 credit)
+\item Let the user define the number of threads and store all \lstinline|hpx::future| in a \lstinline|std::vector| and use \lstinline|hpx::when_all| for synchronization. (1 credit)
+\item Use the \lstinline|.then()| method of a \lstinline|hpx::future| to calculate the results and print the result. (1 credit)
+\item HPX can launch a \lstinline|hpx::parallel::for_loop| and return a \lstinline|hpx::future|. Instead of calling \lstinline|hpx::async| use the future from the \lstinline|hpx::parallel::for_loop| to do the asynchronous programming. (2 credits)  
+\end{enumerate}
+Validate your implementations against the solution 
+\begin{align*}
+\int\limits_0^2 x^2 = \left\vert \frac{x^3}{3}\right\vert_0^2 = \frac{2^3}{3} - \frac{0^2}{3} = \frac{8}{3}\text{.}
+\end{align*}
+
+
+
+
+
+% ========== Continue adding items as needed
+
+\end{enumerate}
+\doclicenseThis 
+
+\end{document}
+\grid
+\grid

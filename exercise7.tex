@@ -55,7 +55,6 @@ Write a program that squares all elements in a \lstinline|std::vector<double>| a
 
 
 \item Definitions: \\
-
 \begin{enumerate}
 \item Explain Amdahl's Law $S=\frac{1}{(1-P)+\frac{P}{N}}$, where $S$ is the speedup, $P$ is the proportion of parallel code, and $N$ the number of processors. (1 credit)
 \item In the guest lecturer, the four horsemen of the apocalypse or the term SLOW was introduced. Write down each term one of the letters defines and explain the term. (1 credit)
@@ -83,7 +82,7 @@ hpx::parallel::for_loop(
 	);
 });
 \end{lstlisting} 
-which makes it more convenient to access several \lstinline|std::vector| using a index. Rewrite the previous $N$-Body simulation using \lstinline|hpx::parallel::for_loop| and the HPX's parallel algorithms.
+which makes it convenient to access several \lstinline|std::vector| using a index. Rewrite the previous $N$-Body simulation using \lstinline|hpx::parallel::for_loop| and the HPX's parallel algorithms.
 
 \item Numerical integration (5 credits)\\
 The trapezoidal rule can be used to approximate the definite integral 

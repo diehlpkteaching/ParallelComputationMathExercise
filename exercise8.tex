@@ -51,7 +51,7 @@
 
 \begin{enumerate}
 \item Futurization of the 1D heat equation (10 credits): \\
-In this exercise you should understand the new version of the code of the 1D heat equation using futurization. You can use the example code on Github\footnote{\url{https://github.com/diehlpkteaching/ParallelComputationMath/blob/master/code/13/Stencil2.ipynb}}\textsuperscript{,}\footnote{\url{https://github.com/STEllAR-GROUP/hpx/blob/master/examples/1d_stencil/1d_stencil_2.cpp}} and there is no need to add the HPX features by your own. Look at the following HPX features
+In this exercise you should understand the new version of the code of the 1D heat equation using futurization. You can use the example code on Github\footnote{\url{https://github.com/diehlpkteaching/StencilLocaltoRemote/blob/master/Stencil2.ipynb}}\textsuperscript{,}\footnote{\url{https://github.com/STEllAR-GROUP/hpx/blob/master/examples/1d_stencil/1d_stencil_2.cpp}} and there is no need to add the HPX features by your own. Look at the following HPX features
 \begin{enumerate}
 \item \lstinline|typedef hpx::shared_future<double> partition;|
 \item \lstinline|U[0][i] = hpx::make_ready_future(double(i));|

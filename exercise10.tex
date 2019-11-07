@@ -1,0 +1,139 @@
+\documentclass[11pt]{article}
+
+\usepackage{listings,color,amsmath,xfrac,amssymb}
+\usepackage[hidelinks]{hyperref}
+\definecolor{comments}{RGB}{81,81,81}
+\definecolor{keywords}{RGB}{255,0,90}
+
+% lstlisting
+\lstset{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{keywords},
+    showspaces=false,
+    showstringspaces=false,
+    commentstyle=\color{blue}\emph
+}
+
+\usepackage[
+    type={CC},
+    modifier={by-nc-nd},
+    version={4.0},
+]{doclicense} 
+
+
+\topmargin -.5in
+\textheight 9in
+\oddsidemargin -.25in
+\evensidemargin -.25in
+\textwidth 7in
+
+\input{variables.tex}
+
+\ifxetex
+\usepackage{fontspec}
+\setmainfont{Raleway}
+\fi
+
+\begin{document}
+
+% ========== Edit your name here
+%\author{Your Name}
+\title{\coursename~Quiz 10: Due by Tuesday, November 12}
+\date{Last exercise}
+\maketitle
+
+\medskip
+
+% ========== Begin answering questions here
+
+\section*{Exercises}
+
+\begin{enumerate}
+\item Adding components and actions to the partition-based 1D heat equation (10 credits): \\
+In this exercise you should understand the new version of the code of the 1D heat equation using components and actions. You can use the example code on Github\footnote{\url{https://github.com/diehlpkteaching/StencilLocaltoRemote/blob/master/Stencil5.cpp}} and there is no need to add the HPX features by your own. Look at the following HPX features
+\begin{enumerate}
+\item \begin{lstlisting}
+ friend class hpx::serialization::access;
+
+    template <typename Archive>
+    void serialize(Archive& ar, const unsigned int version) const {}
+\end{lstlisting} 
+\item \textcolor{white}{test}
+
+\begin{lstlisting}
+struct partition_server
+  : hpx::components::component_base<partition_server>{};
+\end{lstlisting}
+
+\item \lstinline| HPX_DEFINE_COMPONENT_DIRECT_ACTION(partition_server, get_data, get_data_action);|
+
+\item \textcolor{white}{test}
+\begin{lstlisting}
+typedef hpx::components::component<partition_server> partition_server_type;
+HPX_REGISTER_COMPONENT(partition_server_type, partition_server);
+\end{lstlisting}
+
+\item \textcolor{white}{test} 
+\begin{lstlisting}
+typedef partition_server::get_data_action get_data_action;
+HPX_REGISTER_ACTION(get_data_action);
+\end{lstlisting}
+
+\item \textcolor{white}{test} 
+\begin{lstlisting}
+struct partition : hpx::components::client_base<partition, partition_server>{};
+\end{lstlisting}
+
+\item \textcolor{white}{test} 
+\begin{lstlisting}
+    partition(hpx::id_type where, std::size_t size, double initial_value)
+      : base_type(hpx::new_<partition_server>(where, size, initial_value))
+    {}
+\end{lstlisting}
+
+\item \textcolor{white}{test} 
+\begin{lstlisting}
+hpx::future<partition_data> get_data() const
+{
+	return hpx::async(get_data_action(), get_id());
+}
+\end{lstlisting}
+
+\item \textcolor{white}{test} 
+\begin{lstlisting}
+return dataflow(
+	unwrapping(
+		[middle](partition_data const& l, partition_data const& m,
+			partition_data const& r)
+            {
+            		// The new partition_data will be allocated on the same
+                // locality as 'middle'.
+                return partition(middle.get_id(), heat_part_data(l, m, r));
+            }
+            ),
+            left.get_data(), middle.get_data(), right.get_data());
+\end{lstlisting}
+
+\item \lstinline|HPX_PLAIN_ACTION(stepper::heat_part, heat_part_action);|
+
+\item \textcolor{white}{test} 
+\begin{lstlisting}
+using hpx::util::placeholders::_1;
+using hpx::util::placeholders::_2;
+using hpx::util::placeholders::_3;
+
+auto Op = hpx::util::bind(heat_part_action(), hpx::find_here(), _1, _2, _3);
+\end{lstlisting}
+
+\end{enumerate}
+
+\end{enumerate}
+and add a comment to the code why we need these features.
+
+% ========== Continue adding items as needed
+\doclicenseThis 
+
+\end{document}
+\grid
+\grid

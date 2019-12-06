@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+
+\usepackage{listings,color,amsmath,xfrac,amssymb}
+\usepackage[hidelinks]{hyperref}
+\definecolor{comments}{RGB}{81,81,81}
+\definecolor{keywords}{RGB}{255,0,90}
+
+% lstlisting
+\lstset{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{keywords},
+    showspaces=false,
+    showstringspaces=false,
+    commentstyle=\color{blue}\emph
+}
+
+\usepackage[
+    type={CC},
+    modifier={by-nc-nd},
+    version={4.0},
+]{doclicense} 
+
+
+\topmargin -.5in
+\textheight 9in
+\oddsidemargin -.25in
+\evensidemargin -.25in
+\textwidth 7in
+
+\input{variables.tex}
+
+\ifxetex
+\usepackage{fontspec}
+\setmainfont{Raleway}
+\fi
+
+\begin{document}
+
+% ========== Edit your name here
+%\author{Your Name}
+\title{\coursename~Quiz 9: Due by Tuesday, November 05}
+\date{}
+\maketitle
+
+\medskip
+
+% ========== Begin answering questions here
+
+\section*{Exercises}
+
+\begin{enumerate}
+\item Futurization of the partition-based 1D heat equation (10 credits): \\
+In this exercise you should understand the new version of the code of the 1D heat equation using futurization. You can use the example code on Github\footnote{\url{https://github.com/diehlpkteaching/StencilLocaltoRemote/blob/master/Stencil4.ipynb}}\textsuperscript{,}\footnote{\url{https://github.com/diehlpkteaching/StencilLocaltoRemote/blob/master/Stencil4.cpp}} and there is no need to add the HPX features by your own. Look at the following HPX features
+\begin{enumerate}
+\item \lstinline|std::unique_ptr<double[]> data_;|
+\item \begin{lstlisting}
+partition_data(std::size_t size)
+      : data_(new double[size]), size_(size)
+    {}
+\end{lstlisting} 
+\item \textcolor{white}{test}
+
+\begin{lstlisting}
+// The partitioned operator, it invokes the heat operator above on all
+// elements of a partition.
+static partition_data heat_part(partition_data const& left,
+        partition_data const& middle, partition_data const& right)
+\end{lstlisting}
+
+\item \lstinline|hpx::lcos::local::sliding_semaphore sem(nd);|
+
+\item \begin{lstlisting}
+next[i] = dataflow(
+    hpx::launch::async, Op,
+    current[idx(i, -1, np)], current[i], current[idx(i, +1, np)]
+);
+\end{lstlisting}
+
+\item \begin{lstlisting}
+// every nd time steps, attach additional continuation which will
+// trigger the semaphore once computation has reached this point
+if ((t % nd) == 0)
+{
+    next[0].then(
+           [&sem, t](partition &&)
+           {
+               // inform semaphore about new lower limit
+               sem.signal(t);
+               });
+            }
+
+// suspend if the tree has become too deep, the continuation above
+// will resume this thread once the computation has caught up
+sem.wait(t);
+\end{lstlisting}
+\end{enumerate}
+
+\end{enumerate}
+and add a comment to the code why we need these features.
+
+% ========== Continue adding items as needed
+\doclicenseThis 
+
+\end{document}
+\grid
+\grid

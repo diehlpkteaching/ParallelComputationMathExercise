@@ -55,7 +55,7 @@ Write a program that computes
 \begin{align*}
 A = B + C
 \end{align*}
-where $A,B,C$ are \lstinline|std::vector<double>| in parallel.
+where $A,B,C \in \mathbb{R}^n$ are \lstinline|std::vector<double>| in parallel. You can either use \lstinline{std::async} or \lstinline{std::execution::par} for the parallism.
 
 \item Definitions (2 credits): \\
 Explain the following terms in your own words:
@@ -73,11 +73,11 @@ Explain the following terms in your own words:
 
 \item Parallel Monte-Carlo method: (2 credits)\\
 Use your solution of the Monte-Carlo method and add parallelism to your implementation using \\
-\lstinline|std::execution::par|, \lstinline|std::async|, and \lstinline|std::future|. Try to replace as many as possible of the \lstinline|lop| with parallel lops. Try to launch some of the functions asynchronously and synchronize them using the future objects. 
+\lstinline|std::async| and \lstinline|std::future|. Try to launch some of the functions asynchronously and synchronize them using the future objects. 
 
 \item Parallel $N$-body simulation (4 credits)\\
 Use your solution of the $N$-body implementation and add parallelism to your implementation using \\
-\lstinline|std::execution::par|, \lstinline|std::async|, and \lstinline|std::future|. Try to replace as many as possible of the \lstinline|for| loops with parallel loops. Try to launch some of the functions asynchronously and synchronize them using the future objects. 
+\lstinline|std::execution::par| in some of the \lstinline|for| loops. \textbf{Optional:} Try to launch some of the functions asynchronously and synchronize them using the future objects. 
 % ========== Continue adding items as needed
 
 \end{enumerate}

@@ -51,7 +51,7 @@
 
 \begin{enumerate}
 \item Programming on paper (2 credits): \\
-Write a program that squares all elements in a \lstinline|std::vector<double>| and compute the sum of all elements using \lstinline|std::for_each| and \lstinline|std::execution::par|.
+Write a program that squares all elements $(a_i \cdot a_i)$ in a \lstinline|std::vector<double> a| and compute the sum of all elements using \lstinline|std::for_each| and \lstinline|std::execution::par|.
 
 
 \item Understanding code (2 credits): \\
@@ -109,19 +109,19 @@ $
 \end{matrix}\right]
 $
 \end{center}
-and compute $\mathbf{M}^4$, where $\mathbf{M}^4= \mathbf{M}*\mathbf{M}*\mathbf{M}*\mathbf{M}$. Ask the user to provide you with a value of $n$ and print the resulting matrix to the terminal.
+and compute $\mathbf{M}^4$, where $\mathbf{M}^4= \mathbf{M}*\mathbf{M}*\mathbf{M}*\mathbf{M}$ and print the resulting matrix to the terminal or in the Jyputer notebook. 
 
 \item Conjugate gradient method (4 credits)\\
 To solve a equation system $\mathbf{A}\mathbf{x}=\mathbf{b}$, we can use the conjugate gradient methods (CG) by using following algorithm
 \begin{enumerate}
 \item $\mathbf{r_0} = \mathbf{b} - \mathbf{A} \mathbf{x}_0$
-\item If $\mathbf{r}_0< \epsilon$ return  $\mathbf{x}_0$
+\item If $\vert \mathbf{r}_0 \vert< \epsilon$ return  $\mathbf{x}_0$
 \item $\mathbf{p}_0=\mathbf{r}_0$
 \item $k=0$
 \item $\alpha_k = \frac{\mathbf{r}_k^T\mathbf{r}_k}{\mathbf{p}_k^T\mathbf{A}\mathbf{p}_k}$
 \item $ \mathbf{x}_{k+1} = \mathbf{x}_k + \alpha_k \mathbf{p}_k$
 \item $ \mathbf{r}_{k+1} = \mathbf{r}_k - \alpha_k \mathbf{p}_k$
-\item If $\mathbf{r}_{k+1}< \epsilon$ exit loop
+\item If $\vert \mathbf{r}_{k+1} \vert < \epsilon$ exit loop
 \item $\beta_k = \frac{\mathbf{r}_{k+1}^T\mathbf{r}_{k+1}}{\mathbf{r}_k^T\mathbf{r}_k}$
 \item $\mathbf{p}_{k+1}=\mathbf{r}_{k+1} + \beta_k \mathbf{p}_k$
 \item $k=k+1$

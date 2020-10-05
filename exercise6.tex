@@ -39,7 +39,7 @@
 
 % ========== Edit your name here
 %\author{Your Name}
-\title{\coursename~Quiz 6: Due by Tuesday, October 8}
+\title{\coursename~Quiz 6: Due by Thursday, October 8}
 \date{}
 \maketitle
 
@@ -128,10 +128,17 @@ To solve a equation system $\mathbf{A}\mathbf{x}=\mathbf{b}$, we can use the con
 \item go to (e)
 return $\mathbf{x}_{k+1}$
 \end{enumerate}
-Implement the conjugate gradient algorithm using the Blaze library\footnote{\url{https://bitbucket.org/blaze-lib/blaze/wiki/Home}}. Note that the Blaze library is installed on the course's server and I recommend to use the server or Jupyter notebooks for this exercise.
+Implement the conjugate gradient algorithm using the Blaze library\footnote{\url{https://bitbucket.org/blaze-lib/blaze/wiki/Home}}. Note that the Blaze library is installed on the course's server \lstinline|#include <blaze/Math.h>| and I recommend to use the server or Jupyter notebooks for this exercise.
 
-Note that $\mathbf{x}_0$ can be chosen, if we know some assumption of the solution or set to zero. The symbol $\mathbf{v}^T$ denotes the transpose of the vector $\mathbf{v}$. 
+\textbf{Hints:}
+\begin{itemize}
+\item Note that $\mathbf{x}_0$ can be chosen, if we know some assumption of the solution or set to zero.
+\item The symbol $\mathbf{v}^T$ denotes the transpose\footnote{\url{https://bitbucket.org/blaze-lib/blaze/wiki/Vector\%20Operations\#!trans}} of the vector $\mathbf{v}$.
+\item  The symbol $\vert \mathbf{v} \vert$ denotes the norm\footnote{\url{https://bitbucket.org/blaze-lib/blaze/wiki/Vector\%20Operations\#!norms}} of a vector $\mathbf{v}$.
+\item Before you start coding, please read Blaze's documentation\footnote{\url{https://bitbucket.org/blaze-lib/blaze/wiki/Home}} first. You will find plenty of functions there, \emph{e.g.}\ printing a matrix to the terminal, and will have less work to implement.
+\end{itemize}
 
+\textbf{Validation}
 This code produces a matrix $\mathbf{A}$ and a vector $\mathbf{b}$, such that the vector $\mathbf{x}$ is the solution for  $\mathbf{A} \mathbf{x} = \mathbf{b}$
 \begin{lstlisting}
  for(int i=0; i<N; ++i) {

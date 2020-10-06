@@ -120,7 +120,7 @@ To solve a equation system $\mathbf{A}\mathbf{x}=\mathbf{b}$, we can use the con
 \item $k=0$
 \item $\alpha_k = \frac{\mathbf{r}_k^T\mathbf{r}_k}{\mathbf{p}_k^T\mathbf{A}\mathbf{p}_k}$
 \item $ \mathbf{x}_{k+1} = \mathbf{x}_k + \alpha_k \mathbf{p}_k$
-\item $ \mathbf{r}_{k+1} = \mathbf{r}_k - \alpha_k \mathbf{p}_k$
+\item $ \mathbf{r}_{k+1} = \mathbf{r}_k - \alpha_k \mathbf{A} \mathbf{p}_k$
 \item If $\vert \mathbf{r}_{k+1} \vert < \epsilon$ exit loop
 \item $\beta_k = \frac{\mathbf{r}_{k+1}^T\mathbf{r}_{k+1}}{\mathbf{r}_k^T\mathbf{r}_k}$
 \item $\mathbf{p}_{k+1}=\mathbf{r}_{k+1} + \beta_k \mathbf{p}_k$
@@ -144,8 +144,8 @@ This code produces a matrix $\mathbf{A}$ and a vector $\mathbf{b}$, such that th
  for(int i=0; i<N; ++i) {
         A(i,i) = 2.0;
         b[i] = 1.0*(1+i);
-        x[i] += x[i-1];
-    }
+        x[i] = 0.5*(i+1);
+ }
 \end{lstlisting}
 You can use the matrix $\mathbf{A}$ and the vector $\mathbf{b}$ as the input of your CG implementation and compare your solution with the vector $\mathbf{x}$ to validate your code. You should not use this vector as the input of the CG algorithm, since your code might stop at step (2) already.
 

@@ -50,20 +50,64 @@
 \section*{Exercises}
 
 \begin{enumerate}
-\item Futurization of the 1D heat equation (10 credits): \\
-In this exercise you should understand the new version of the code of the 1D heat equation using futurization. You can use the example code on Github\footnote{\url{https://github.com/diehlpkteaching/StencilLocaltoRemote/blob/master/Stencil2.ipynb}}\textsuperscript{,}\footnote{\url{https://github.com/STEllAR-GROUP/hpx/blob/master/examples/1d_stencil/1d_stencil_2.cpp}} and there is no need to add the HPX features by your own. Look at the following HPX features
-\begin{enumerate}
-\item \lstinline|typedef hpx::shared_future<double> partition;|
-\item \lstinline|U[0][i] = hpx::make_ready_future(double(i));|
-\item \lstinline|auto Op = unwrapping(&stepper::heat);|
-\item \begin{lstlisting}
-next[i] = dataflow(
-	hpx::launch::async, Op,
-	current[idx(i, -1, nx)], current[i], current[idx(i, +1, nx)]
-	);
+\item Enhanced futures (4 credits): \\
+HPX implements following two additional \lstinline|future| variants
+\begin{itemize}
+\item \lstinline|hpx::shared_future|
+\item \lstinline|hpx::make_ready_future|
+\end{itemize}
+Please explain why HPX provides these additional future variants. Try to make a small example, where these are needed.
+
+\section*{Programming exercise}
+
+\begin{itemize}
+\item Using dataflow (4 credits): \\
+Replace the \lstinline|hpx::when_all(futures).then()| by hpx::dataflow. Note that the function \lstinline|square| is defined in the next source code listing.
+\begin{lstlisting}
+run_hpx([](){
+
+std::vector<hpx::lcos::future<int>> futures;
+futures.push_back(hpx::async(square,10));
+futures.push_back(hpx::async(square,100));
+
+hpx::when_all(futures).then([](auto&& f){
+    std::vector<hpx::lcos::future<int>> futures = f.get();
+    int result = 0;
+    for(size_t i = 0; i < futures.size();i++)
+        result += futures[i].get();
+    std::cout << result << std::endl;
+});
+
+});
 \end{lstlisting}
-\end{enumerate}
-and add a comment to the code why we need these features.
+
+\item Unwrapping futures: (2 credits)\\
+In the code below are two comments and two lines of code are missing there. Please add the two missing lines of code.
+\begin{lstlisting}
+// Evaluate the result and print the result
+void sum(int first, int second){
+	std::cout << first + second << std::endl;
+}
+// Compute the square 
+int square(int a)
+{
+return a*a ;
+}
+
+int main(){
+	std::vector<hpx::lcos::future<int>> futures;
+	futures.push_back(hpx::async(square,10));
+	futures.push_back(hpx::async(square,100));
+	
+	// Unwrapp the function sum
+	
+	// Use dataflow to execute the function asynchronously.
+	
+		
+	return 0;
+}
+\end{lstlisting} 
+\end{itemize}
 
 % ========== Continue adding items as needed
 

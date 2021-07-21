@@ -51,7 +51,7 @@
 
 \begin{enumerate}
 \item Programming on paper (2 credits): \\
-Write a program that squares all elements in a \lstinline|std::vector<double>| and compute the sum of all elements using \lstinline|hpx::parallel::for_loop|. 
+Write a program that squares all elements in a \lstinline|std::vector<double>| and compute the sum of all elements using \lstinline|hpx::for_loop|. 
 
 
 \item Definitions: \\
@@ -71,7 +71,7 @@ Write a program that squares all elements in a \lstinline|std::vector<double>| a
 \item $N$-body simulation: (1 credit)\\
 The C++ standard library does not provide a nice way for range-based parallel for loops. HPX provides
 \begin{lstlisting}
-hpx::parallel::for_loop(
+hpx::for_loop(
 	hpx::parallel::execution::par, 
 	0, 
 	values.size(),
@@ -82,7 +82,7 @@ hpx::parallel::for_loop(
 	);
 });
 \end{lstlisting} 
-which makes it convenient to access several \lstinline|std::vector| using a index. Rewrite the previous $N$-Body simulation using \lstinline|hpx::parallel::for_loop| and the HPX's parallel algorithms.
+which makes it convenient to access several \lstinline|std::vector| using a index. Rewrite the previous $N$-Body simulation using \lstinline|hpx::for_loop| and the HPX's parallel algorithms.
 
 \item Numerical integration (5 credits)\\
 The trapezoidal rule can be used to approximate the definite integral 
@@ -94,7 +94,7 @@ assuming a uniform grid in the interval $[a,b]$ with the grid size $h=\frac{b-a}
 \item Use \lstinline|hpx::future| and \lstinline|hpx::async| compute the solution asynchronously. (1 credit)
 \item Let the user define the number of threads and store all \lstinline|hpx::future| in a \lstinline|std::vector| and use \lstinline|hpx::when_all| for synchronization. (1 credit)
 \item Use the \lstinline|.then()| method of a \lstinline|hpx::future| to calculate the results and print the result. (1 credit)
-\item HPX can launch a \lstinline|hpx::parallel::for_loop| and return a \lstinline|hpx::future|. Instead of calling \lstinline|hpx::async| use the future from the \lstinline|hpx::parallel::for_loop| to do the asynchronous programming. (2 credits)  
+\item HPX can launch a \lstinline|hpx::for_loop| and return a \lstinline|hpx::future|. Instead of calling \lstinline|hpx::async| use the future from the \lstinline|hpx::for_loop| to do the asynchronous programming. (2 credits)  
 \end{enumerate}
 Validate your implementations against the solution 
 \begin{align*}

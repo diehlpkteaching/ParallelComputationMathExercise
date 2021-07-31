@@ -1,0 +1,49 @@
+\usepackage{listings,color,amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{comments}{RGB}{81,81,81}
+\definecolor{keywords}{RGB}{255,0,90}
+
+% lstlisting
+\lstset{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{keywords},
+    showspaces=false,
+    showstringspaces=false,
+    commentstyle=\color{blue}\emph
+}
+
+
+\usepackage[
+    type={CC},
+    modifier={by-nc-nd},
+    version={4.0},
+]{doclicense} 
+
+
+\topmargin -.5in
+\textheight 9in
+\oddsidemargin -.25in
+\evensidemargin -.25in
+\textwidth 7in
+
+\input{variables.tex}
+
+\usepackage{ifxetex}
+
+\ifxetex
+\usepackage{fontspec}
+\setmainfont{Raleway}
+\fi
+
+\usepackage[calc,datesep=/]{datetime2}
+\newcount\daycount
+\newcommand{\DueDate}[2]{%
+  \DTMsavedate{ShootDate}{#1}%
+  \DTMsaveddateoffsettojulianday{ShootDate}{#2}\daycount
+  \DTMsavejulianday{ShootDate}{\number\daycount}%
+  \DTMusedate{ShootDate}%
+}
+
+\usepackage{xfrac}

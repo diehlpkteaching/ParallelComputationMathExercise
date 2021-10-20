@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+
+\include{packages}
+
+
+\begin{document}
+
+% ========== Edit your name here
+%\author{Your Name}
+\title{\coursename~Quiz Optional 1: Due by 11/5/2021}
+\date{}
+\maketitle
+
+\medskip
+
+% ========== Begin answering questions here
+
+
+\section*{Programming exercises}
+
+\begin{lstlisting}
+
+double result = 0;
+size_t n = 1e6;
+for(size_t i = 0 ; i < n ; i++)
+{
+	result -= std::power(x,i)/i;
+}
+
+\end{lstlisting} 
+
+
+\begin{enumerate}
+
+\item
+Asynchronous programming using the C++ standard library  (10 credits): \\
+\begin{enumerate}
+\item Write a function to compute a slice of the above \lstinline{for} loop.
+\item Split the computation in 2 partitions and use \lstinline{std::async} and \lstinline{std::future} to compute the partial results concurrently. 
+\item Now, use a \lstinline{std::vector<std::future<double>>} to compute the result for an arbitrary number of partitions $m$.
+\end{enumerate}
+
+
+\item Asynchronous programming using HPX (10 credits)\\
+
+\begin{enumerate}
+\item Repeat the above steps using HPX.
+\item Use \lstinline{hpx::when_all().then()} to gather the results.
+\item Use \lstinline{hpx::dataflow} to gather the results.
+\end{enumerate}
+
+
+% ========== Continue adding items as needed
+
+\end{enumerate}
+
+\doclicenseThis 
+
+\end{document}
+\grid
+\grid
